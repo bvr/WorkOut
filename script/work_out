@@ -18,5 +18,10 @@ $ENV{MOJO_APP} ||= 'WorkOut';
 
 # Start commands
 my $cmd = Mojolicious::Commands->new;
-$cmd->namespaces([qw/Mojolicious::Command Mojo::Command WorkOut::Command/]);
+
+# Add WorkOut::Command namespace for additional commands
+my $ns = $cmd->namespaces;
+push @$ns, 'WorkOut::Command';
+$cmd->namespaces($ns);
+
 $cmd->start;
